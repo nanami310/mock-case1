@@ -6,24 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('image');
+            $table->boolean('is_sold')->default(false);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // ユーザーとのリレーション
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('products');

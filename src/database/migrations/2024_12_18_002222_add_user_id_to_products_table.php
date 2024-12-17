@@ -6,27 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 class AddUserIdToProductsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
-    {
-        Schema::table('products', function (Blueprint $table) {
-            //
-        });
-    }
+{
+    Schema::table('products', function (Blueprint $table) {
+        $table->unsignedBigInteger('user_id')->after('id'); // ここでuser_idを追加
+    });
+}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('products', function (Blueprint $table) {
-            //
-        });
-    }
+public function down()
+{
+    Schema::table('products', function (Blueprint $table) {
+        $table->dropColumn('user_id');
+    });
+}
 }
